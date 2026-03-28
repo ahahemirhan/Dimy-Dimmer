@@ -1,0 +1,100 @@
+========================================================
+   HOW TO BUILD DIMY ON YOUR WINDOWS PC
+   Step-by-step guide (no coding knowledge needed)
+========================================================
+
+
+
+────────────────────────────────────────────────────────
+  OPTION A: w64devkit  (Easiest - just extract a zip)
+────────────────────────────────────────────────────────
+
+  STEP 1: Download w64devkit
+    1. Go to: https://github.com/skeeto/w64devkit/releases
+    2. Download the file: w64devkit-x64-2.1.0.zip
+       (or the latest version)
+
+  STEP 2: Extract the zip
+    1. Right-click the downloaded zip
+    2. Click "Extract All..."
+    3. Extract to any location, e.g. C:\w64devkit
+
+  STEP 3: Open the compiler terminal
+    1. Open the extracted folder
+    2. Double-click: w64devkit.exe
+    3. A black terminal window opens
+
+  STEP 4: Go to your Dimmer folder
+    1. Type:  cd "
+    2. Open File Explorer, go to the folder with dimmer.c (or just hold the folder and drag it to w64devkit, skip to 5th step)
+    3. Click the address bar and copy the path 
+    4. Right-click in the terminal to paste the path
+    5. Type the closing "  and press Enter
+
+    Example:
+       cd "C:\Users\YourName\Desktop\Dimmer"
+
+  STEP 5: Build
+    Copy this line, then right-click in the terminal
+    to paste it by right click, then press Enter:
+
+gcc -o Dimmer.exe dimmer.c -mwindows -municode -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -lole32 -static -O2
+
+    When you see the cursor on a new line with no
+    errors, it worked!
+
+  STEP 6: Run
+    Double-click Dimmer.exe in your folder!
+
+
+────────────────────────────────────────────────────────
+  OPTION B: Visual Studio Build Tools
+────────────────────────────────────────────────────────
+
+  STEP 1: Download
+    Go to: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+    Click "Download Build Tools" and run the installer
+
+  STEP 2: Install
+    Check "Desktop development with C++" and click Install
+    (takes 10-20 minutes)
+
+  STEP 3: Open the compiler terminal
+    Click Start, search for "x64 Native Tools Command Prompt"
+
+  STEP 4: Go to your Dimmer folder
+    Type:  cd /d "C:\path\to\your\Dimmer\folder"
+
+  STEP 5: Build
+    Paste this line and press Enter:
+
+cl /O2 /DUNICODE /D_UNICODE dimmer.c /Fe:Dimmer.exe /link /SUBSYSTEM:WINDOWS user32.lib gdi32.lib shell32.lib comctl32.lib advapi32.lib ole32.lib
+
+  STEP 6: Run
+    Double-click Dimmer.exe!
+    (You can delete dimmer.obj - not needed)
+
+
+────────────────────────────────────────────────────────
+  TROUBLESHOOTING
+────────────────────────────────────────────────────────
+
+  "gcc is not recognized"
+    Use the w64devkit.exe terminal, not regular cmd.
+
+  "cannot find dimmer.c"
+    Wrong folder. Use cd to go to where dimmer.c is.
+    Type: ls    to see files in current folder.
+
+  "Cannot paste with Ctrl+V"
+    Right-click in the terminal to paste.
+
+  Overlay appears in recordings
+    Need Windows 10 v2004+ (build 19041 or higher).
+    Check: Settings > System > About > OS build
+
+  Dimmer doesn't work over fullscreen game
+    Switch your game to "Borderless Fullscreen" or
+    "Windowed Fullscreen" in the game's settings.
+
+========================================================
